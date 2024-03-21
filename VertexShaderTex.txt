@@ -1,25 +1,30 @@
+// VertexShaderTex.txt
 #version 330 core
 
-layout (location = 0) in vec2 inPosition;
-layout (location = 1) in vec2 inTexCoord;
-layout (location = 2) in vec4 inColor;
+// Input attributes
+layout (location = 0) in vec2 inPosition;  // Vertex position
+layout (location = 1) in vec2 inTexCoord;  // Texture coordinates
+layout (location = 2) in vec4 inColor;     // Vertex color
 
-out vec2 TexCoord;
-out vec4 Color;
-out float blendRatio;
+// Output variables
+out vec2 TexCoord;      // Interpolated texture coordinates
+out vec4 Color;         // Interpolated vertex color
+out float blendRatio;   // Interpolated blend ratio for pixel shader
 
-uniform mat4 world;
-uniform mat4 projection;
-uniform mat4 view;
-
-uniform mat4 texMatrix;
-uniform float blend;
+// Uniforms (constants passed from application)
+uniform mat4 world;     // World matrix for object transformation
+uniform mat4 projection;  // Projection matrix for perspective
+uniform mat4 view;       // View matrix for camera position
+uniform mat4 texMatrix;  // Texture matrix for texture transformations
+uniform float blend;     // Blend factor for blending between textures
 
 void main(void) 
 { 
+    // Calculate final vertex position in screen space
     gl_Position = projection * view * world * vec4(inPosition, 0, 1);
+
+    // Transform texture coordinates with texture matrix
     vec4 SampleTexCoord = texMatrix * vec4(inTexCoord, 0, 1);
-    TexCoord = SampleTexCoord.xy;
-    Color = inColor;
-    blendRatio = blend;
-}
+    TexCoord = SampleTexCoord.xy;  // Pass transformed texture coordinates
+    Color = inColor;               // Pass vertex color
+    blendRatio = blend;            // Pass blend ratio for pixel shader
