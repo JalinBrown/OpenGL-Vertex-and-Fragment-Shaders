@@ -1,0 +1,20 @@
+#version 330 core
+
+in vec2 TexCoord;
+in vec4 Color;
+in float blendRatio;
+
+out vec4 pixelColor;
+
+uniform sampler2D inTexture;
+
+uniform vec4 blendColor;
+
+void main(void) 
+{
+    vec4 texColor = texture(inTexture, TexCoord);
+    if (texColor.a < 0.1)
+        discard;
+
+    pixelColor = mix(texColor, blendColor, blendRatio);
+}

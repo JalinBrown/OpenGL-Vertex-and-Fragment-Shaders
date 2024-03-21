@@ -1,0 +1,25 @@
+#version 330 core
+
+layout (location = 0) in vec2 inPosition;
+layout (location = 1) in vec2 inTexCoord;
+layout (location = 2) in vec4 inColor;
+
+out vec2 TexCoord;
+out vec4 Color;
+out float blendRatio;
+
+uniform mat4 world;
+uniform mat4 projection;
+uniform mat4 view;
+
+uniform mat4 texMatrix;
+uniform float blend;
+
+void main(void) 
+{ 
+    gl_Position = projection * view * world * vec4(inPosition, 0, 1);
+    vec4 SampleTexCoord = texMatrix * vec4(inTexCoord, 0, 1);
+    TexCoord = SampleTexCoord.xy;
+    Color = inColor;
+    blendRatio = blend;
+}
