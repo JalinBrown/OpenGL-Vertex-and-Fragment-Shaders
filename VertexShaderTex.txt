@@ -28,3 +28,4 @@ void main(void)
     TexCoord = SampleTexCoord.xy;  // Pass transformed texture coordinates
     Color = inColor;               // Pass vertex color
     blendRatio = blend;            // Pass blend ratio for pixel shader
+}
