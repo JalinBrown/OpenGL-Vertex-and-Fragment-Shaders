@@ -61,3 +61,8 @@ Notes
 - Customize the shaders as needed for specific rendering requirements.
 
 Feel free to explore and modify the shaders to suit your graphics rendering needs.
+
+![ec04d57b-d38e-49a7-b577-2c60fbd2dbd1](https://github.com/JalinBrown/OpenGL-Vertex-and-Fragment-Shaders/assets/148666293/9156bb3a-00e4-4c10-87d3-a4738ad052fd)
+![f9931dae-3171-4603-92c1-c43fb1fc43e6](https://github.com/JalinBrown/OpenGL-Vertex-and-Fragment-Shaders/assets/148666293/7c6a1701-6669-4d32-a4e0-a77f404b5327)
+
+
