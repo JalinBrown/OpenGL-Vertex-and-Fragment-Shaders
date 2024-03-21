@@ -1,20 +1,27 @@
+// PixelShaderTex.txt
 #version 330 core
 
-in vec2 TexCoord;
-in vec4 Color;
-in float blendRatio;
+// Input variables from vertex shader
+in vec2 TexCoord;       // Interpolated texture coordinates
+in vec4 Color;          // Interpolated vertex color
+in float blendRatio;    // Interpolated blend ratio for blending
 
-out vec4 pixelColor;
+// Output variable
+out vec4 pixelColor;    // Final pixel color to be written to the screen
 
-uniform sampler2D inTexture;
-
-uniform vec4 blendColor;
+// Uniforms (constants passed from application)
+uniform sampler2D inTexture;   // Input texture for sampling
+uniform vec4 blendColor;       // Color used for blending with texture
 
 void main(void) 
 {
+    // Sample the texture using interpolated texture coordinates
     vec4 texColor = texture(inTexture, TexCoord);
+
+    // Discard fragments with low alpha values (transparency)
     if (texColor.a < 0.1)
         discard;
 
+    // Blend between texture color and blend color based on blend ratio
     pixelColor = mix(texColor, blendColor, blendRatio);
 }
